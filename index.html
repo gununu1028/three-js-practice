@@ -33,8 +33,8 @@
         camera.position.set(0, 0, 0);
         scene.add(camera);
 
-        // 球体の形状を作成
-        var geometry = new THREE.SphereGeometry(5, 60, 40);
+        // 球体の形状を作成（円柱）
+        var geometry = new THREE.CylinderGeometry(5, 5, 20, 32);
         geometry.scale(-1, 1, 1);
 
         //　マテリアルの作成
@@ -62,19 +62,19 @@
         // パソコン閲覧時マウスドラッグで視点操作する
         controls = new THREE.OrbitControls(camera, element);
         controls.target.set(camera.position.x + 0.15, camera.position.y, camera.position.z);
-        
+
         // 視点操作のイージングをONにする
         controls.enableDamping = true;
-        
+
         // 視点操作のイージングの値
         controls.dampingFactor = 0.2;
-        
+
         // 視点変更の速さ
         controls.rotateSpeed = 0.2;
-        
+
         // ズーム禁止
         controls.noZoom = false;
-        
+
         // パン操作禁止
         controls.noPan = false;
 
