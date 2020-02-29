@@ -1,0 +1,11 @@
+{
+  "name": "three-js-practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/gununu1028/three-js-practice.git",
+  "author": "松田淳司",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.113.2"
+  }
+}
