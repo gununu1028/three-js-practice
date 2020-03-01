@@ -29,12 +29,13 @@
         window.addEventListener("resize", handleResize, false);
 
         // カメラの作成
-        camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
+        camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
         camera.position.set(0, 0, 0);
+        // シーンに追加
         scene.add(camera);
 
         // 球体の形状を作成（円柱）
-        var geometry = new THREE.CylinderGeometry(5, 5, 20, 32);
+        var geometry = new THREE.CylinderGeometry(10, 10, 10, 32, 1, true);
         geometry.scale(-1, 1, 1);
 
         //　マテリアルの作成
@@ -43,7 +44,7 @@
           map: THREE.ImageUtils.loadTexture("6443.jpg")
         });
 
-        // 球体(形状)にマテリアル(質感)を貼り付けて物体を作成
+        // 円柱にマテリアルを貼り付けて物体を作成
         sphere = new THREE.Mesh(geometry, material);
 
         //　シーンに追加
@@ -54,29 +55,20 @@
 
         // レンダラーをwindowサイズに合わせる
         renderer.setSize(width, height);
-        renderer.setClearColor({ color: 0x000000 });
+        renderer.setClearColor({ color: 0x111111 });
         element = renderer.domElement;
         document.body.appendChild(element);
         renderer.render(scene, camera);
 
-        // パソコン閲覧時マウスドラッグで視点操作する
+        // マウスドラッグで視点操作する
         controls = new THREE.OrbitControls(camera, element);
-        controls.target.set(camera.position.x + 0.15, camera.position.y, camera.position.z);
-
-        // 視点操作のイージングをONにする
-        controls.enableDamping = true;
-
-        // 視点操作のイージングの値
-        controls.dampingFactor = 0.2;
+        controls.target.set(camera.position.x + 0.15, 0, 0);
 
         // 視点変更の速さ
         controls.rotateSpeed = 0.2;
 
-        // ズーム禁止
-        controls.noZoom = false;
-
-        // パン操作禁止
-        controls.noPan = false;
+        // ズームを禁止にする
+        controls.enableZoom = false;
 
         render();
       }
