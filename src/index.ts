@@ -8,7 +8,7 @@ const height = window.innerHeight;
 var element;
 var scene, camera, renderer, controls;
 
-function init() {
+window.addEventListener("DOMContentLoaded", () => {
     // シーンの作成
     scene = new THREE.Scene();
 
@@ -42,15 +42,15 @@ function init() {
     setOrbitControls();
 
     render();
-}
+});
 
 // レンダラーの設定
-function setRenderer() {
-    // レンダラーの作成
+const setRenderer = () => {
     renderer = new THREE.WebGLRenderer();
 
     // レンダラーをwindowサイズに合わせる
     renderer.setSize(width, height);
+    
     renderer.setClearColor({ color: 0x000000 });
     element = renderer.domElement;
     document.body.appendChild(element);
@@ -58,7 +58,7 @@ function setRenderer() {
 }
 
 // OrbitControlsの設定
-function setOrbitControls() {
+const setOrbitControls = () => {
     // マウスドラッグで視点操作する
     controls = new OrbitControls(camera, element);
 
@@ -76,16 +76,15 @@ function setOrbitControls() {
 }
 
 // リサイズ処理
-function handleResize() {
+const handleResize = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 }
 
-function render() {
+const render = () => {
     requestAnimationFrame(render);
     renderer.render(scene, camera);
     controls.update();
 }
 
-window.addEventListener("load", init, false);
