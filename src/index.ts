@@ -2,8 +2,12 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three-orbitcontrols-ts';
 
 // windowサイズを画面サイズに合わせる
-const width = window.innerWidth;
-const height = window.innerHeight - 100;
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+if (width < height) {
+    height = width;
+}
 
 var element;
 var scene, camera, renderer, controls;
@@ -50,10 +54,10 @@ const setRenderer = () => {
 
     // レンダラーをwindowサイズに合わせる
     renderer.setSize(width, height);
-    
+
     renderer.setClearColor({ color: 0x000000 });
     element = renderer.domElement;
-    document.querySelector('main').appendChild(element);
+    document.body.appendChild(element);
     renderer.render(scene, camera);
 }
 
