@@ -6,7 +6,7 @@
   "author": "松田淳司",
   "license": "MIT",
   "dependencies": {
-    "three": "^0.113.2",
+    "three": "^0.125.0",
     "three-orbitcontrols-ts": "^0.1.2"
   },
   "devDependencies": {
